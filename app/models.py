@@ -1,4 +1,12 @@
 from app import db
+from mapfunctions import datacreate
+import pandas as pd
+import numpy as np
+import mpl_toolkits.basemap.pyproj as pyproj
+#matplotlib.use('TkAgg')
+import matplotlib
+
+
 
 class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -8,12 +16,3 @@ class User(db.Model):
 
 	def __repr__(self):
 		return '<User %r>' % (self.nickname)
-
-class Post(db.Model):
-	id = db.Column(db.Integer, primary_key = True)
-	body = db.Column(db.String(140))
-	timestamp = db.Column(db.DateTime)
-	user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-
-	def __repr__(self):
-		return '<Post %r>' % (self.body)
